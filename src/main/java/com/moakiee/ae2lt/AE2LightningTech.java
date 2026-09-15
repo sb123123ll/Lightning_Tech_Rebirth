@@ -756,6 +756,8 @@ public class AE2LightningTech {
             Upgrades.add(AEItems.SPEED_CARD, (ItemLike)ModBlocks.LIGHTNING_SIMULATION_CHAMBER.get(), 4);
             Upgrades.add(AEItems.SPEED_CARD, (ItemLike)ModBlocks.LIGHTNING_ASSEMBLY_CHAMBER.get(), 4);
             Upgrades.add(AEItems.SPEED_CARD, (ItemLike)ModBlocks.OVERLOAD_PROCESSING_FACTORY.get(), 4);
+            Upgrades.add(AEItems.FUZZY_CARD, (ItemLike)ModItems.INFINITE_STORAGE_CELL.get(), 1);
+            Upgrades.add(AEItems.INVERTER_CARD, (ItemLike)ModItems.INFINITE_STORAGE_CELL.get(), 1);
             Upgrades.add(AEItems.FUZZY_CARD, (ItemLike)ModItems.OVERLOADED_FILTER_COMPONENT.get(), 1);
             Upgrades.add(AEItems.INVERTER_CARD, (ItemLike)ModItems.OVERLOADED_FILTER_COMPONENT.get(), 1);
             Upgrades.add(AEItems.FUZZY_CARD, (ItemLike)ModItems.VOID_CELL.get(), 1);
