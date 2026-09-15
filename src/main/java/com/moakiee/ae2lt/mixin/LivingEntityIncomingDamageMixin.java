@@ -1,0 +1,89 @@
+package com.moakiee.ae2lt.mixin;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
+import com.moakiee.ae2lt.celestweave.CelestweaveArmorDamageHandler;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin({LivingEntity.class})
+public abstract class LivingEntityIncomingDamageMixin {
+   @Inject(
+      method = {"hurt"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;isSleeping()Z"
+      )},
+      cancellable = true
+   )
+   private void ae2lt$applyIncomingDamage(
+      DamageSource source,
+      float amount,
+      CallbackInfoReturnable<Boolean> cir,
+      @Local(argsOnly = true) LocalFloatRef mutableAmount,
+      @Share("ae2lt$originalDamage") LocalFloatRef originalDamage
+   ) {
+      originalDamage.set(amount);
+      LivingEntity entity = (LivingEntity)this;
+      CelestweaveArmorDamageHandler.IncomingDamageResult result = CelestweaveArmorDamageHandler.onIncomingDamage(entity, source, amount);
+      if (result.canceled()) {
+         cir.setReturnValue(false);
+      } else {
+         mutableAmount.set(result.amount());
+      }
+   }
+
+   @WrapOperation(
+      method = {"hurt"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V",
+         ordinal = 0
+      )}
+   )
+   private void ae2lt$runCooldownDamageWithOriginalDamageScope(
+      LivingEntity entity, DamageSource source, float amount, Operation<Void> original, @Share("ae2lt$originalDamage") LocalFloatRef originalDamage
+   ) {
+      ae2lt$runWithOriginalDamageScope(entity, source, amount, original, originalDamage);
+   }
+
+   @WrapOperation(
+      method = {"hurt"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V",
+         ordinal = 1
+      )}
+   )
+   private void ae2lt$runFreshDamageWithOriginalDamageScope(
+      LivingEntity entity, DamageSource source, float amount, Operation<Void> original, @Share("ae2lt$originalDamage") LocalFloatRef originalDamage
+   ) {
+      ae2lt$runWithOriginalDamageScope(entity, source, amount, original, originalDamage);
+   }
+
+   @Unique
+   private static void ae2lt$runWithOriginalDamageScope(
+      LivingEntity entity, DamageSource source, float amount, Operation<Void> original, LocalFloatRef originalDamage
+   ) {
+      if (!(entity instanceof Player)) {
+         original.call(new Object[]{entity, source, amount});
+      } else {
+         int initialDepth = CelestweaveArmorDamageHandler.beginOriginalDamage(entity, originalDamage.get());
+
+         try {
+            original.call(new Object[]{entity, source, amount});
+         } finally {
+            CelestweaveArmorDamageHandler.finishOriginalDamage(entity, initialDepth);
+         }
+      }
+   }
+}

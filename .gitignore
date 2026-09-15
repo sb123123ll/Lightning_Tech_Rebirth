@@ -1,0 +1,47 @@
+# ================================
+# Gradle & Build (必须忽略，防止锁定冲突)
+# ================================
+.gradle/
+build/
+run/
+eclipse/
+
+# ================================
+# IDE & System Files
+# ================================
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+bin/
+.settings/
+.metadata/
+.classpath
+.project
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ================================
+# Exclude Non-Core / Reference
+# ================================
+# 排除反编译的前置参考工程
+thunderbolt_core_reference/
+
+# 排除 Jar 包（放行 wrapper 和 libs）
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+!libs/*.jar
+
+# 排除 MDK 模板说明文件
+forge*changelog.txt
+changelog.txt
+README.txt
+CREDITS.txt
+LICENSE.txt
+
+# 排除反编译产生的非源码映射文件与崩溃日志
+src/main/resources/ae2lt.refmap.json
+*.log
+crash-reports/

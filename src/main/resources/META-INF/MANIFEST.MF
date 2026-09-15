@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Specification-Title: ae2lt
+Specification-Vendor: qiamao and everyone
+Specification-Version: 1
+Implementation-Title: ae2-lightning-tech-1-20-1
+Implementation-Version: re-0.0.1
+Implementation-Vendor: qiamao and everyone
+Implementation-Timestamp: 2026-09-07T13:16:50+0000
+TweakClass: org.spongepowered.asm.launch.MixinTweaker
+TweakOrder: 0
+MixinConfigs: ae2lt.mixins.json,ae2lt.mekanism.mixins.json,ae2lt.recipev
+ iewer.mixins.json,ae2lt.ae2wtlib.mixins.json
+

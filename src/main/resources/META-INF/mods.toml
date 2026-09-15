@@ -1,0 +1,133 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "GNU LGPL 3.0"
+issueTrackerURL = "https://github.com/MOAKIEE/AE2-Lightning-Tech/issues"
+
+[[mods]]
+modId = "ae2lt"
+version = "re-0.0.1"
+displayName = "AE2 Lightning Tech: Rebirth"
+displayURL = "https://github.com/MOAKIEE/AE2-Lightning-Tech"
+logoFile = "ae2lt.png"
+authors = "qiamao and everyone"
+description = '''An AE2 addon that introduces a lightning energy system, advanced machines, and overloaded network components.'''
+
+[[dependencies."ae2lt"]]
+modId = "forge"
+mandatory = true
+versionRange = "[47.1.3,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,1.20.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "ae2"
+mandatory = true
+versionRange = "[15.4.10,16)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "guideme"
+mandatory = true
+versionRange = "[20.1.7,20.2.0)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "jade"
+mandatory = false
+versionRange = "[11.13.2,12)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies."ae2lt"]]
+modId = "jei"
+mandatory = false
+versionRange = "[15.20.0.129,16)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies."ae2lt"]]
+modId = "emi"
+mandatory = false
+versionRange = "[1.1.24+1.20.1,2)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies."ae2lt"]]
+modId = "advanced_ae"
+mandatory = false
+versionRange = "[1.2.9-1.20.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "expatternprovider"
+mandatory = false
+versionRange = "[1.20-1.3.5-forge,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "appflux"
+mandatory = false
+versionRange = "[1.20-1.3.7-forge,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "fluxnetworks"
+mandatory = false
+versionRange = "[7.2.1.15,8)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "mekanism"
+mandatory = false
+versionRange = "[10.4.16,10.5)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "curios"
+mandatory = false
+versionRange = "[5.14.1,6)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "polymorph"
+mandatory = false
+versionRange = "[0.49.10+1.20.1,1)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies."ae2lt"]]
+modId = "thunderbolt"
+mandatory = true
+versionRange = "[2.0.0-beta.3,2.1.0)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "ae2wtlib"
+mandatory = false
+versionRange = "[15.3.3-forge,16)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."ae2lt"]]
+modId = "veil"
+mandatory = false
+# Runtime API detection preserves the native shader fallback for older or incompatible builds.
+versionRange = "[1.0.0,2)"
+ordering = "AFTER"
+side = "CLIENT"
